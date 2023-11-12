@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+function clean() {
+  git clean -fdx &> /dev/null
+  if [[ ! -z $1 ]]; then
+    echo ""
+    echo " --- " $1
+    echo ""
+  fi
+}
+
+ROOT_PWD=$(pwd)
+clean "Simply execute the start script in root without any issues"
+./garn start
+
+clean "Call a task in a workspace using garn workspace SPACE TASK"
+./garn workspace a a-only-task
+./garn workspace b b-only-task
+
+clean
+echo "Execute a workspace task from code using workspaces.runTask('SPACE', 'TASK')"
+./garn all-foo
+
+##
+clean "Run the task 'foo' on all workspaces that has this task"
+./garn workspace foo
+
+clean "Run garn from workspace a directly"
+cd $ROOT_PWD/packages/a
+./garn foo
+cd $ROOT_PWD
+
+clean "Run garn from workspace b directly"
+cd $ROOT_PWD/packages/b
+./garn foo
+cd $ROOT_PWD
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. ./node --verify
+. ./yarn --verify
+
+./node_modules/.bin/garn --buildsystem-path=$(realpath ./buildsystem) "$@"

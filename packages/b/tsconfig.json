@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "CommonJS",
+    "lib": ["ES2020"],
+  },
+  "extends": "../../tsconfig.json",
+  "include": ["**/*.ts", "**/*.tsx"]
+}

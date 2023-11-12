@@ -1,0 +1,16 @@
+{
+  "name": "garn-template",
+  "version": "0.0.0",
+  "repository": "https://github.com/yoohhan/garn-template",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "dependencies": {
+    "@avensia-oss/garn": "0.7.0",
+    "typescript": "~4.5.4"
+  },
+  "packageManager": "yarn@1.22.21"
+}

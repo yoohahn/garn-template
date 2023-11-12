@@ -1,0 +1,11 @@
+{
+  "name": "b",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jane Doe",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@avensia-oss/garn": "0.7.0"
+  }
+}

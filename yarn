@@ -1,0 +1,20 @@
+#!/bin/bash
+NODE_VERSION=20.7.0
+DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+YARN_PATH=$DIRNAME/tools
+NODE_MODULES_PATH=$DIRNAME/node_modules
+case `uname` in
+    *CYGWIN*) DIRNAME=`cygpath -w "$DIRNAME"`;;
+esac
+
+if [ -d "$YARN_PATH/node-v$NODE_VERSION-win-x64" ]; then
+  YARN_PATH="$YARN_PATH/node-v$NODE_VERSION-win-x64/node_modules/corepack/dist/yarn.js"
+else
+  YARN_PATH="$YARN_PATH/node-$NODE_VERSION/yarn"
+fi
+
+if [ "$1" == "--verify" ]; then
+  . "$DIRNAME"/node "$YARN_PATH" install --immutable &> /dev/null
+else
+  . "$DIRNAME"/node "$YARN_PATH" "$@" &> /dev/null
+fi

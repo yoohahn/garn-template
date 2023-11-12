@@ -1,0 +1,17 @@
+.buildcache/
+node_modules/
+tools/
+.env
+.*-env
+*.orig
+.ts-build/
+
+# Yarn v4+
+.yarn.checksum
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

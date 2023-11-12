@@ -1,0 +1,22 @@
+{
+  "buildOnSave": false,
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "target": "es6",
+    "module": "esnext",
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "lib": ["es2018", "dom", "dom.iterable"],
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "paths": {}
+  },
+  "exclude": ["**/node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}
