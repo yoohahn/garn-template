@@ -5,5 +5,7 @@
   "main": "index.js",
   "author": "Jane Doe",
   "license": "UNLICENSED",
-  "devDependencies": {}
+  "devDependencies": {
+    "@avensia-oss/garn": "0.8.0-rc.1"
+  }
 }

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@avensia-oss/garn@0.8.0-rc.0":
-  version "0.8.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@avensia-oss/garn/-/garn-0.8.0-rc.0.tgz#8ea6127ecb155477be4bba8697763ffbc5a9262b"
-  integrity sha512-kcc8HIBib3N4VkaqCAtQ/ixyC796xjQLclBGHPcaefuCy8bZ1WIvRxZsR5XVhWFTCXimRHmC6HY8xrx8XKTcOg==
+"@avensia-oss/garn@0.8.0-rc.1":
+  version "0.8.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@avensia-oss/garn/-/garn-0.8.0-rc.1.tgz#e8955a839cb7266d3730fd1e26e3f8dc406b6f37"
+  integrity sha512-6wV27t+3L7Jg1dHWUC+TbouqHSD02bfWOeE9nv+vzMw9AM1PaBEgzESkORHb5dBKOq8Qql8RF/nwbBYVvqZINw==
   dependencies:
     "@octokit/rest" "^18.12.0"
     chalk "^4.1.0"
