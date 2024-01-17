@@ -9,8 +9,8 @@
     ]
   },
   "dependencies": {
-    "@avensia-oss/garn": "0.7.0",
-    "typescript": "~4.5.4"
+    "@avensia-oss/garn": "1.0.1",
+    "typescript": "^5"
   },
-  "packageManager": "yarn@1.22.21"
+  "packageManager": "yarn@4.5.0"
 }

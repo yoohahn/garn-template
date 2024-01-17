@@ -1,83 +1,19 @@
 #!/bin/bash
-
-NODE_VERSION=20.7.0
 DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-installBuildToolsForMac() {
-  if ! [ -x "$(command -v brew)" ]; then
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-  fi
-
-  if ! [ -x "$(command -v realpath)" ]; then
-    brew install coreutils
-  fi
-}
-
-installBuildToolsForLinux() {
-  if ! [ -x "$(command -v realpath)" ]; then
-    sudo apt-get install coreutils
-  fi
-}
-
-setupNodeForUnix() {
-  if [[ "$OSTYPE" == "darwin"* ]];then
-    installBuildToolsForMac
-  elif [[ "$OSTYPE" == "linux"* ]]; then
-    installBuildToolsForLinux
-  fi
- 
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
- 
-  if ! [ -x "$(command -v nvm)" ] && ! [ -d "$HOME/.nvm" ]; then
-    echo "Installing NVM..."
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-  fi
-
-  if [ -d "$HOME/.nvm" ]; then
-    \. "$NVM_DIR/nvm.sh" # Load nvm
-
-    if ! [ $(nvm current) == "v$NODE_VERSION" ]; then
-      nvm install "$NODE_VERSION" --default &> /dev/null
-    fi
-
-    nvm use "$NODE_VERSION" &> /dev/null
-    NODE_PATH="$(which node)"
-  else
-    echo "ERROR: Couldn't select the Node version $NODE_VERSION through NVM command. Please check your NVM installation."
-    exit 1
-  fi
-}
-
-setupNodeForWindows(){
-  NODE_PATH="$DIRNAME"/tools/node-"$NODE_VERSION".exe
-  if [[ ! -f "$NODE_PATH" ]]; then
-    echo "Installing Node..."
-
-    DOWNLOAD_URL=https://nodejs.org/dist/v"$NODE_VERSION"/win-x64/node.exe
-    curl "$DOWNLOAD_URL" --location --silent --output "$NODE_PATH"
-    echo "Node successfully installed!"
-  fi
-}
+NODE_VERSION=$(cat $DIRNAME/.nvmrc)
 
 setupCorepack(){
   CORE_PATH=$DIRNAME/tools/node-$NODE_VERSION
 
   if [[ ! -d $CORE_PATH ]]; then
     mkdir -p $CORE_PATH
+    corepack enable --install-directory="$CORE_PATH"
   fi
-  corepack enable --install-directory="$CORE_PATH"
 }
 
-if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "linux"* ]]; then
-  setupNodeForUnix
-else
-  setupNodeForWindows
-fi
-
 setupCorepack
+NODE_PATH="$(which node)"
 
-## Needed for Node 18+ since webpack 4 is relying on old cryptos.
-export NODE_OPTIONS=--openssl-legacy-provider
 if [ "$1" != "--verify" ]; then
   "$NODE_PATH" "$@"
 fi

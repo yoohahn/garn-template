@@ -1,6 +1,6 @@
 #!/bin/bash
-NODE_VERSION=20.7.0
 DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+NODE_VERSION=$(cat $DIRNAME/.nvmrc)
 YARN_PATH=$DIRNAME/tools
 NODE_MODULES_PATH=$DIRNAME/node_modules
 case `uname` in
