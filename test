@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+git clean -fdx .
+yarn install
+
 function clean() {
   git clean -fdx &> /dev/null
   if [[ ! -z $1 ]]; then
